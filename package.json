@@ -15,14 +15,17 @@
     "@ant-design/nextjs-registry": "^1.0.2",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "antd": "^5.26.5",
+    "bcrypt": "^6.0.0",
     "cookies-next": "^6.1.0",
     "next-themes": "^0.4.6",
+    "postgres": "^3.4.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@eslint/js": "^9.31.0",
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "^20",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",

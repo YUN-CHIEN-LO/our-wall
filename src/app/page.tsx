@@ -1,11 +1,9 @@
-import CodeInput from "@ui/app/code-input";
+import Entry from "@/ui/app/entry";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
-      <div>
-        <CodeInput />
-      </div>
+      <Entry />
     </div>
   );
 }
