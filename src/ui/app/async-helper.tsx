@@ -1,10 +1,11 @@
-export const fetchAlbum = async (code: string) => {
+export async function fetchAlbum(code: string) {
   const response = await fetch(`/api/album/${code}`);
 
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const errorData = await response.json();
+    throw new Error(errorData.message || "獲取相冊失敗");
   }
 
   const data = await response.json();
-  return data;
-};
+  return { id: data.id };
+}
