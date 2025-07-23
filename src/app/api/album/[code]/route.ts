@@ -9,7 +9,6 @@ export async function GET(
   try {
     const { code } = await params;
 
-    console.log("code", code);
 
     if (code && code.trim() !== "") {
       // 首先檢查表是否存在
@@ -52,7 +51,6 @@ export async function GET(
 
       // 根據 ID 查詢特定專輯
       const album = await sql`SELECT * FROM albums WHERE id = ${code.trim()}`;
-      console.log("album result:", album);
 
       if (album.length === 0) {
         return Response.json(

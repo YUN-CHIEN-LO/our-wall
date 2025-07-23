@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Layout } from "antd";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import Navbar from "./navbar";
+import "@ant-design/v5-patch-for-react-19";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AntdRegistry>
-          <Layout>{children}</Layout>
+          <Layout>
+            <Navbar />
+            {children}
+          </Layout>
         </AntdRegistry>
       </body>
     </html>
