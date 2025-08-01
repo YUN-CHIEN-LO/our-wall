@@ -3,20 +3,29 @@ import postgres from "postgres";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  try {
-    const { id } = await params;
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const userId = searchParams.get("userId");
 
-    // 查詢用戶的相冊
-    const albums = await sql`
-      SELECT id, title, created_at
-      FROM albums 
-      WHERE user_id = ${id}
-      ORDER BY created_at DESC
-    `;
+  try {
+    let albums;
+
+    if (userId) {
+      // 查詢特定用戶的相冊
+      albums = await sql`
+        SELECT id, title, created_at
+        FROM albums 
+        WHERE user_id = ${userId}
+        ORDER BY created_at DESC
+      `;
+    } else {
+      // 查詢所有相冊
+      albums = await sql`
+        SELECT id, title, created_at
+        FROM albums 
+        ORDER BY created_at DESC
+      `;
+    }
 
     // 轉換 BigInt 為數字以確保 JSON 序列化
     const serializedAlbums = albums.map(album => ({
@@ -33,4 +42,4 @@ export async function GET(
       { status: 500 }
     );
   }
-} 
+}

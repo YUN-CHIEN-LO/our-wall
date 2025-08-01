@@ -5,7 +5,7 @@ import { Form, Input, Button } from "antd";
 import { useRouter } from "next/navigation";
 
 async function fetchAlbum(code: string) {
-  const response = await fetch(`/api/album/${code}`);
+  const response = await fetch(`/api/albums/${code}`);
 
   if (!response.ok) {
     const errorData = await response.json();

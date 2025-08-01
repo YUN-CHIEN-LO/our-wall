@@ -30,7 +30,7 @@ export async function GET(
       id: user.id,
       name: user.name,
       email: user.email,
-      created_at: user.created_at,
+      created_at: Number(user.created_at),
     });
   } catch (error) {
     console.error("Get user error:", error);
